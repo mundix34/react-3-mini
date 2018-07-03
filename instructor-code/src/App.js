@@ -7,8 +7,7 @@ import './App.css';
 // Toast notification dependencies
 import { ToastContainer, toast } from 'react-toastify';
 
-const baseUrl = "http://joes-autos.herokuapp.com/api";
-
+const baseUrl = 'http://joes-autos.herokuapp.com/api';
 
 class App extends Component {
   constructor(props) {
@@ -34,11 +33,13 @@ class App extends Component {
 
   getVehicles() {
     // axios (GET)
-    // setState with response -> vehiclesToDisplaye
-    let promise = axios.get(baseUrl +'/vehicles')
-    promise.then((result)=>{
+    // setState with response -> vehiclesToDisplay
+    let promise = axios.get(baseUrl + '/vehicles')
+
+    promise.then((result) => {
       this.setState({
-        vehiclesToDisplay:result.data})
+        vehiclesToDisplay: result.data
+      })
     })
   }
 
@@ -50,7 +51,8 @@ class App extends Component {
   sellCar(id) {
     // axios (DELETE)
     // setState with response -> vehiclesToDisplay
-    axios.delete(baseUrl + '/vehicles/'+ id).then((response)=>{
+
+    axios.delete(baseUrl + '/vehicles/' + id).then((response) => {
       this.setState({
         vehiclesToDisplay: response.data.vehicles
       })
@@ -62,12 +64,12 @@ class App extends Component {
 
     // axios (GET)
     // setState with response -> vehiclesToDisplay
-    axios.get(baseUrl + '/vehicles? make=' + make)
-    .then(response => {
-      this.setState({
-        vehiclesToDisplay: response.data
+    axios.get(baseUrl + '/vehicles?make=' + make)
+      .then(response => {
+        this.setState({
+          vehiclesToDisplay: response.data
+        })
       })
-    })
   }
 
   filterByColor() {
@@ -81,11 +83,11 @@ class App extends Component {
     // axios (PUT)
     // setState with response -> vehiclesToDisplay
     axios.put(baseUrl + `/vehicles/${id}/${priceChange}`)
-    .then((response) => {
-      this.setState({
-        vehiclesToDisplay: response.data.vehicles
+      .then((response) => {
+        this.setState({
+          vehiclesToDisplay: response.data.vehicles
+        })
       })
-    })
   }
 
   addCar() {
@@ -99,9 +101,9 @@ class App extends Component {
 
     // axios (POST)
     // setState with response -> vehiclesToDisplay
-    let promise = axios.post(baseUrl+'/vehicles', newCar)
+    let promise = axios.post(baseUrl + '/vehicles', newCar)
 
-    promise.then((response)=>{
+    promise.then((response) => {
       this.setState({
         vehiclesToDisplay: response.data.vehicles
       })
